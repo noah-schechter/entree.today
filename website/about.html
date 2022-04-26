@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About | entree.today</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="output.css" rel="stylesheet"> 
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+        <script type="module" src="new.js"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    </head>
+    <body>
+        <div class="bg-no-repeat bg-cover bg-center bg-opacity-20"
+        style="background-image: url(WE50.png)">
+        <div class="p-4 md:grid md:grid-cols-5">
+            <div class="md:col-start-2 md:col-end-5"> 
+                <div class="p-x-8 p-4">
+                    <h1 class="heading text-6xl font-bold" align="left">ABOUT</h1>
+                </div>
+                <div class="py-6 p-2">
+                    <h1 class="heading py-2 font-bold" align="center">WHAT IS THIS SITE?</h1>
+                    <p align="justify"> this site displays the lunch and dinner menu for arrillaga family dining commons, but generally that's representative of all stanford dining halls' menus. unfortunately, i can't predict specials, so you won't find those here. </p>
+                </div>
+                <div class="py-6 p-2" >
+                    <h1 class="heading py-2 font-bold" align="center">WHY?</h1>
+                    <p align="justify"> i built this site to learn web development. it's not too serious—think <a href="https://www.robinsloan.com/notes/home-cooked-app/"><u>programming as home-cooking</u></a>. i realized it would be cool if someone made a prettier version of the stanford dining hall menu, one that was easier to navigate. i have that kind of idea a lot, but  this time it aligned with something I've wanted to learn for awhile. so I built it! (kind of, see "TECH STUFF" for a better description of everything i screwed up.)</p>
+                </div>
+                <div  class="py-6 p-2">
+                    <h1 class="heading font-bold py-2" align="center">RIGHTS AND PERMISSIONS</h1>
+                    <p align="justify"> i was not authorized by, nor am i affiliated with, rd&e or any other stanford dining organization. i'm simply displaying the content they already publish freely. they own the displayed content, i guess. </p>
+                </div>
+                <div  class="py-6 p-2">
+                    <h1 class="heading font-bold py-2" align="center">TECH STUFF</h1>
+                    <div align="justify">
+                        <p> before i built this, i'd never written to a real database or read from one, either. that means this site is pretty janky. you'll notice the load time is a bit slow. that's really frustrating to me because i built this to make viewing the menu more pleasant. to be clear, that's totally my fault: the code that reads the database when you go to <a href="index.html"><u>entree.today</u></a> runs in the browser. i now know it should run on a server. i just don't know enough to actually make that happen. so anyway, longer, weirder loading times are here to stay for now. </p>
+                    </div>
+                    
+                </div>
+                <div class="footer pt-8 text-xs" align="center">
+                    
+                        <p class="text-xs"><i>Background image recolored from original by Ward & Blohme, Architects. Memorial Church. August 1, 1911. Sourced from <u><a href="https://searchworks.stanford.edu/view/zy932bd0293">Stanford Library</a></u>. <a target="_blank" href="https://icons8.com/icon/59873/restaurant">Restaurant</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>.</i></p>
+                        <p align="center" class="pt-4 text-xs">Built by <!--<u><a href="https://twitter.com/NoahESchechter">-->Noah Schechter<!--</a></U>-->.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
