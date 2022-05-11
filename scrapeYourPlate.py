@@ -44,16 +44,16 @@ def chooseMeal(meal_ID):
 def process(ingredients):
     out = []
     last = 0
-    search = True
+    search = 0
     i = 0
     while i < len(ingredients):
-        if search == True and ingredients[i] == ",":
+        if search == 0 and ingredients[i] == ",":
             out.append(ingredients[last:i])
             last = i + 2
         elif ingredients[i] == '(':
-            search = False
+            search += 1
         elif ingredients[i] == ')':
-            search = True
+            search -= 1 
         else:
             pass
         i += 1
@@ -92,7 +92,7 @@ def add_new_meal(bigIngredientList, meal_ID):
     dateNow = datetime.date.today() 
     meal = whatMeal(meal_ID)
     for ingredient in bigIngredientList:
-        db.collection('Foods').add({'Date':str(dateNow), 
+        db.collection('FoodsActual').add({'Date':str(dateNow), 
                                     'Meal':meal, 
                                     'Dish':ingredient, 
                                     'Ingredients':bigIngredientList[ingredient][0], 

@@ -50,10 +50,10 @@ var date = makeTime()
 async function build(meal, course) {
   var dishes =[]
   if (course == "entrees") {
-    dishes = await getDocs(query(collection(db, "Foods"), where('Date', '==', `${date}`), where('Meal', '==', `${meal}`), orderBy('Index'), limit(2)));
+    dishes = await getDocs(query(collection(db, "FoodsActual"), where('Date', '==', `${date}`), where('Meal', '==', `${meal}`), orderBy('Index'), limit(2)));
   }
   else if (course == "sides") {
-    dishes = await getDocs(query(collection(db, "Foods"), where('Date', '==', `${date}`), where('Meal', '==', `${meal}`), where('Index', '>=', 2)));
+    dishes = await getDocs(query(collection(db, "FoodsActual"), where('Date', '==', `${date}`), where('Meal', '==', `${meal}`), where('Index', '>=', 2)));
   }
   else {
     dishes = [1]
@@ -77,6 +77,7 @@ function construct(meal) {
       food.innerText = "This is supposed to be the lunch part of brunch. Expect breakfast food too. ";
       contents.appendChild(food);
     }
+  else if
   else {
     let top = document.getElementById("top");
     top.innerText = `${meal.toUpperCase()}`;
