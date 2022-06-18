@@ -37,7 +37,7 @@ function makeTime() {
 
 function whatMeal() {
   var hours = dateTime.getHours();
-  if (hours < 17) {
+  if (hours < 16) {
     return "lunch";
   }
   return "dinner";
@@ -77,7 +77,6 @@ function construct(meal) {
       food.innerText = "This is supposed to be the lunch part of brunch. Expect breakfast food too. ";
       contents.appendChild(food);
     }
-  else if
   else {
     let top = document.getElementById("top");
     top.innerText = `${meal.toUpperCase()}`;
