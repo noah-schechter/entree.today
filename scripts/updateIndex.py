@@ -1,11 +1,12 @@
 import os
 import datetime
+from datetime import timedelta
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
 
-cred = credentials.Certificate("/Users/noahschechter/Documents/Web/PrettyMenu/serviceAccountKey.json")
+cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -18,13 +19,20 @@ def getMeal():
         if datetime.datetime.today().weekday() > 4:
             return 'brunch'
     return 'lunch'
+    
+def getDatePDT(meal):
+    if meal == 'lunch' or meal == 'brunch':
+        return str(datetime.date.today())
+    else:
+        return str(datetime.date.today() - timedelta(days=1))
+
 
 #returns ordered list of dishes
 def getDishes(meal):
-    dateNow = datetime.date.today() 
-    dateNowStr = str(dateNow)
+    dateNowStr = getDatePDT(meal)
     foodsActual = db.collection(u'FoodsActual')
-    if meal == 'lunch': #fill this in with logic to produce logic
+    print(dateNowStr)
+    if meal == 'lunch': 
         meals = foodsActual.where(u'Date', u'==', u"" + dateNowStr +"").where(u'Meal', u'==', u'lunch').order_by('Index')
     elif meal == 'brunch':
         meals = foodsActual.where(u'Date', u'==', u"" + dateNowStr +"").where(u'Meal', u'==', u'brunch').order_by('Index')
@@ -33,7 +41,7 @@ def getDishes(meal):
     docs = meals.stream()
     final = []
     for doc in docs:
-        final.append(doc.to_dict()['Dish'])
+        final.append((doc.to_dict()['Dish']).lower())
     return final #implement meal logic
 
 def writeEntrees(dishes):
@@ -45,6 +53,7 @@ def writeEntrees(dishes):
             %s
         </p>
         """ 
+    print(dishes)
     return(entrees % (dishes[0], dishes[1]))
 
 def writeSides(dishes):
@@ -63,7 +72,7 @@ def writeSides(dishes):
 
 #Will (once implemented) write new html file to become new homepage 
 def writeFile(dishes, meal):
-    f = open('new.html','w')
+    f = open('public/index.html','w')
     message = """
     <!DOCTYPE html>
     <html>
@@ -115,9 +124,15 @@ def writeFile(dishes, meal):
     f.write(whole)
     f.close()
 
-#def deployFile():
+def deployFile():
+    os.system("npm install -g firebase-tools")
+    key = os.environ.get('FIREBASE_TOKEN')
+    os.system(f'firebase deploy --token {key}')
     
 if __name__ == "__main__":
     meal = getMeal()
+    print(meal)
     dishes = getDishes(meal)
+    print(dishes)
     writeFile(dishes, meal)
+    deployFile()
