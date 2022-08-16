@@ -125,6 +125,14 @@ def writeFile(dishes, meal):
     f.write(whole)
     f.close()
 
+def writeAPI(meal, dishes):
+    date = getDatePDT(meal)
+    f = open('public/api.json','w')
+    message = """{ "meal": %s, "entrees": %s, "sides": %s }"""
+    full = message % (meal, dishes[0:2], dishes[2:])
+    f.write(full)
+    f.close()
+
 def deployFile():
     os.system("npm install -g firebase-tools")
     key = os.environ.get('FIREBASE_TOKEN')
@@ -136,4 +144,5 @@ if __name__ == "__main__":
     dishes = getDishes(meal)
     print(dishes)
     writeFile(dishes, meal)
+    writeAPI(meal, dishes)
     deployFile()
