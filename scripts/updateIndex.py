@@ -10,40 +10,50 @@ cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-def getMeal():
-    dateTime = str(datetime.datetime.utcnow())
+
+"""
+Returns meal (lunch or dinner) based on time of day. If its before 4 pm, returns lunch (or brunch if a weekend). Otherwise returns dinner.
+"""
+def getMeal(dateTime):
     hour = int(dateTime[11:13])
-    if hour - 7 > 16 or hour - 7 < 0:
+    if hour == 23 or (hour >= 0 and hour < 7):
         return 'dinner'
-    else:
-        if datetime.datetime.today().weekday() > 4:
+    elif datetime.datetime.today().weekday() > 4:
             return 'brunch'
     return 'lunch'
     
-def getDatePDT(meal):
-    if meal == 'lunch' or meal == 'brunch':
-        return str(datetime.date.today())
-    else:
+
+"""
+Returns current date in pacific time.
+"""
+def getDatePT(dateTime):
+    hour = int(dateTime[11:13])
+    if hour < 7:
         return str(datetime.date.today() - timedelta(days=1))
+    return str(datetime.date.today())
 
 
-#returns ordered list of dishes
-def getDishes(meal):
-    dateNowStr = getDatePDT(meal)
+""""
+Returns list of dishes on the specified date and for the specified meal. Takes in the current hour to compute the correct date.
+"""
+def getDishes(date, meal):
     foodsActual = db.collection(u'FoodsActual')
-    print(dateNowStr)
     if meal == 'lunch': 
-        meals = foodsActual.where(u'Date', u'==', u"" + dateNowStr +"").where(u'Meal', u'==', u'lunch').order_by('Index')
+        meals = foodsActual.where(u'Date', u'==', u"" + date +"").where(u'Meal', u'==', u'lunch').order_by('Index')
     elif meal == 'brunch':
-        meals = foodsActual.where(u'Date', u'==', u"" + dateNowStr +"").where(u'Meal', u'==', u'brunch').order_by('Index')
+        meals = foodsActual.where(u'Date', u'==', u"" + date +"").where(u'Meal', u'==', u'brunch').order_by('Index')
     else:
-        meals = foodsActual.where(u'Date', u'==', u"" + dateNowStr +"").where(u'Meal', u'==', u'dinner').order_by('Index')
+        meals = foodsActual.where(u'Date', u'==', u"" + date +"").where(u'Meal', u'==', u'dinner').order_by('Index')
     docs = meals.stream()
     final = []
     for doc in docs:
         final.append((doc.to_dict()['Dish']).lower())
     return final #implement meal logic
 
+
+"""
+Creates string of HTML to be inserted, which is comprised of the first two dishes listed.
+"""
 def writeEntrees(dishes):
     entrees = """
         <p class="p-4 text-xl">
@@ -53,9 +63,11 @@ def writeEntrees(dishes):
             %s
         </p>
         """ 
-    print(dishes)
     return(entrees % (dishes[0], dishes[1]))
 
+"""
+Creates string of HTML to be inserted, which is comprised of all but the first two dishes listed.
+"""
 def writeSides(dishes):
     sides = ""
     new = ""
@@ -70,9 +82,11 @@ def writeSides(dishes):
         sides = sides + newish
     return(sides)
 
-#Will (once implemented) write new html file to become new homepage 
+"""
+Creates new index.html file comprised of the proper meal and dishes.
+"""
 def writeFile(dishes, meal):
-    f = open('public/index.html','w')
+    f = open('pbulic/index.html','w')
     message = """
     <!DOCTYPE html>
     <html>
@@ -125,11 +139,11 @@ def writeFile(dishes, meal):
     f.write(whole)
     f.close()
 
-def writeAPI(meal, dishes):
-    date = getDatePDT(meal)
+
+def writeAPI(date, meal, dishes):
     f = open('public/api.json','w')
-    message = """{ "meal": %s, "entrees": %s, "sides": %s }"""
-    full = message % (meal, dishes[0:2], dishes[2:])
+    message = """{"date": %s, "meal": %s, "entrees": %s, "sides": %s}"""
+    full = message % (date, meal, dishes[0:2], dishes[2:])
     f.write(full)
     f.close()
 
@@ -139,10 +153,10 @@ def deployFile():
     os.system(f'firebase deploy --token {key}')
     
 if __name__ == "__main__":
-    meal = getMeal()
-    print(meal)
-    dishes = getDishes(meal)
-    print(dishes)
+    dateTime = str(datetime.datetime.utcnow())
+    date = getDatePT(dateTime)
+    meal = getMeal(dateTime)
+    dishes = getDishes(date, meal)
     writeFile(dishes, meal)
-    writeAPI(meal, dishes)
+    writeAPI(date, meal, dishes)
     deployFile()
