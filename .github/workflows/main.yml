@@ -18,5 +18,4 @@ jobs:
     steps:
        - uses: actions/checkout@v3
       # Runs a single command using the runners shell
-      - name: Scrape
-        run: python3 ./scripts/scrapeYourPlate.py
+       - run: python3 ./scripts/scrapeYourPlate.py
