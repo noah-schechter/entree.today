@@ -1,13 +1,9 @@
 name: Scrape
 
-       # Controls when the workflow will run
 on:
  workflow_dispatch
-  # Triggers the workflow every 5 minutes
-  # schedule:
-    #- cron: "08 00 * * *"
+#- cron: "08 00 * * *"
 
-     # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "cron"
   cron:
@@ -17,5 +13,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
        - uses: actions/checkout@v3
+       - run: python -m pip install --upgrade pip
        - run: pip install selenium
+       - run: pip install firebase_admin
+       - run: pip install datetime
        - run: python3 ./scripts/scrapeYourPlate.py
