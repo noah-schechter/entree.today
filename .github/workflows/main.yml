@@ -18,4 +18,4 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: Scrape
-        run: python3 scrapeYourPlate.py
+        run: python3 ./scripts/scrapeYourPlate.py
