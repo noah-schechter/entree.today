@@ -33,7 +33,7 @@ def getDatePT(dateTime):
     return str(datetime.date.today())
 
 
-""""
+"""
 Returns list of dishes on the specified date and for the specified meal. Takes in the current hour to compute the correct date.
 """
 def getDishes(date, meal):
@@ -63,6 +63,12 @@ def writeEntrees(dishes):
             %s
         </p>
         """ 
+    count = 0
+    for dish in dishes:
+        count += 1
+    if count < 2:
+        dishes.append("Sorry, we weren't able to determine today's meals.")
+        dishes.append("Be sure to check back tomorrow for an updated menu.")
     return(entrees % (dishes[0], dishes[1]))
 
 """
