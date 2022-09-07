@@ -93,7 +93,14 @@ def add_new_meal(bigIngredientList, meal_ID):
     dateNow = datetime.date.today() 
     meal = whatMeal(meal_ID)
     for ingredient in bigIngredientList:
-        db.collection('FoodsActual').add({'Date':str(dateNow), 
+        #Checks for duplicates and abandons adding the dish if there is a duplicate.
+        duplicates = db.collection('FoodsActual').where(u'Date', u'==', u"" + dateNow +"").where(u'Meal', u'==', u"" + meal + "").where(u'Dish', u'==', u"" + ingredient + "")
+        docs = duplicates.stream()
+        count = 0
+        for doc in docs:
+            count += 1
+        if count == 0:
+            db.collection('FoodsActual').add({'Date':str(dateNow), 
                                     'Meal':meal, 
                                     'Dish':ingredient, 
                                     'Ingredients':bigIngredientList[ingredient][0], 
