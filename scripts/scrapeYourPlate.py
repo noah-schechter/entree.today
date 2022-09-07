@@ -84,6 +84,7 @@ def scrape():
         if name.text not in bigIngredientList:
             bigIngredientList[name.text] = [ingredients, i, vegetarian, vegan, gluten_free]
         i += 1 #We're not getting index==0 foods
+    print(bigIngredientList)
     return bigIngredientList
 
 
@@ -94,10 +95,11 @@ def add_new_meal(bigIngredientList, meal_ID):
     meal = whatMeal(meal_ID)
     for ingredient in bigIngredientList:
         #Checks for duplicates and abandons adding the dish if there is a duplicate.
-        duplicates = db.collection('FoodsActual').where(u'Date', u'==', u"" + str(dateNow) +"").where(u'Meal', u'==', u"" + meal + "").where(u'Dish', u'==', u"" + ingredient + "")
+        duplicates = db.collection('FoodsActual').where(u'Date', u'==', u""+ str(dateNow) +"").where(u'Meal', u'==', u"" + meal + "").where(u'Dish', u'==', u"" + ingredient + "")
         docs = duplicates.stream()
         count = 0
         for doc in docs:
+            print(doc.to_dict())
             count += 1
         if count == 0:
             db.collection('FoodsActual').add({'Date':str(dateNow), 
@@ -139,9 +141,10 @@ def whatLocation(location_ID):
 
 if __name__ == "__main__":
     browser.get(url)
+    print('Success opening browser')
     for location_ID in range(2,3): #To be improved with all locations, perhaps
         chooseLocation(location_ID)
         for meal_ID in range(2,6):
             chooseMeal(meal_ID)
-            #add_new_meal(scrape(), meal_ID)
+            add_new_meal(scrape(), meal_ID)
     browser.close()
