@@ -38,17 +38,15 @@ Returns list of dishes on the specified date and for the specified meal. Takes i
 """
 def getDishes(date, meal):
     foodsActual = db.collection(u'FoodsActual')
-    if meal == 'lunch': 
+    if meal == 'lunch' or meal == 'brunch':  #will display the lunch. parts of brunch
         meals = foodsActual.where(u'Date', u'==', u"" + date +"").where(u'Meal', u'==', u'lunch').order_by('Index')
-    elif meal == 'brunch':
-        meals = foodsActual.where(u'Date', u'==', u"" + date +"").where(u'Meal', u'==', u'brunch').order_by('Index')
     else:
         meals = foodsActual.where(u'Date', u'==', u"" + date +"").where(u'Meal', u'==', u'dinner').order_by('Index')
     docs = meals.stream()
     final = []
     for doc in docs:
         dish = (doc.to_dict()['Dish']).lower()
-        if dish not in final:
+        if meal not in final:
             final.append(dish)
     return final #implement meal logic
 
@@ -88,7 +86,7 @@ def writeSides(dishes):
 Creates new index.html file comprised of the proper meal and dishes.
 """
 def writeFile(dishes, meal):
-    f = open('pbulic/index.html','w')
+    f = open('public/index.html','w')
     message = """
     <!DOCTYPE html>
     <html>
@@ -158,7 +156,8 @@ if __name__ == "__main__":
     dateTime = str(datetime.datetime.utcnow())
     date = getDatePT(dateTime)
     meal = getMeal(dateTime)
+    print(meal)
     dishes = getDishes(date, meal)
     writeFile(dishes, meal)
     writeAPI(date, meal, dishes)
-    deployFile()
+    deployFile() 
