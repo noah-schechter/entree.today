@@ -46,7 +46,7 @@ def getDishes(date, meal):
     final = []
     for doc in docs:
         dish = (doc.to_dict()['Dish']).lower()
-        if meal not in final:
+        if meal not in final: #Protect against displaying duplicates in databse, because WayScript likes to scrape twice sometimes.
             final.append(dish)
     return final #implement meal logic
 
