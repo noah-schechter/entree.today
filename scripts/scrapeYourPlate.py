@@ -13,7 +13,7 @@ options.add_argument('--disable-dev-shm-usage')
 s=Service(executable_path='chromedriver') #Fix this to correct location if running in local machine.
 browser = webdriver.Chrome(service=s, options=options)
 url = 'https://rdeapps.stanford.edu/dininghallmenu/'
-driver = webdriver.Chrome('./chromedriver')
+#driver = webdriver.Chrome('chromedriver')
 
 
 #Firestore INIT
