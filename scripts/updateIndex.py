@@ -47,7 +47,9 @@ def getDishes(date, meal):
     docs = meals.stream()
     final = []
     for doc in docs:
-        final.append((doc.to_dict()['Dish']).lower())
+        dish = (doc.to_dict()['Dish']).lower()
+        if dish not in final:
+            final.append(dish)
     return final #implement meal logic
 
 
