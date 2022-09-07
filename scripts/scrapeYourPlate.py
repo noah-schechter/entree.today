@@ -94,7 +94,7 @@ def add_new_meal(bigIngredientList, meal_ID):
     meal = whatMeal(meal_ID)
     for ingredient in bigIngredientList:
         #Checks for duplicates and abandons adding the dish if there is a duplicate.
-        duplicates = db.collection('FoodsActual').where(u'Date', u'==', u"" + dateNow +"").where(u'Meal', u'==', u"" + meal + "").where(u'Dish', u'==', u"" + ingredient + "")
+        duplicates = db.collection('FoodsActual').where(u'Date', u'==', u"" + str(dateNow) +"").where(u'Meal', u'==', u"" + meal + "").where(u'Dish', u'==', u"" + ingredient + "")
         docs = duplicates.stream()
         count = 0
         for doc in docs:
