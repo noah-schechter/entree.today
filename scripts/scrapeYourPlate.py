@@ -13,7 +13,7 @@ options.add_argument('--disable-dev-shm-usage')
 s=Service(executable_path='chromedriver') #Fix this to correct location if running in local machine.
 browser = webdriver.Chrome(service=s, options=options)
 url = 'https://rdeapps.stanford.edu/dininghallmenu/'
-#driver = webdriver.Chrome('chromedriver')
+#driver = webdriver.Chrome('chromedriver') #To be honest I'm not sure why this line exists.
 
 
 #Firestore INIT
@@ -21,7 +21,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
-cred = credentials.Certificate('serviceAccountKey.json')
+cred = credentials.Certificate('serviceAccountKey.json') #Change filepath as necessary
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -41,7 +41,7 @@ def chooseMeal(meal_ID):
     browser.find_element(By.XPATH, '//*[@id="MainContent_lstMealType"]/option[' + str(meal_ID) + ']').click()
 
 
-#Processes ingredient text and returns list of high-level ingredients (with lower-level ones inccluded in ingredient strigns)
+#Processes ingredient text and returns list of high-level ingredients (with lower-level ones included in ingredient strings)
 def process(ingredients):
     out = []
     last = 0
