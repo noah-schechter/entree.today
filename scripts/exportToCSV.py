@@ -12,15 +12,27 @@ docs = Foods.stream()
 #CSV INIT
 import csv
 
-
-
-if __name__ == "__main__":
+def export_everything():
     with open('Foods.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['Ingredient', 'Dish', 'Meal', 'Date', 'Index', 'Vegetarian', 'Vegan', 'Gluten-Free'])
         for doc in docs:
             info = doc.to_dict()
-            print(info)
-            for i in range(0, len(info['Ingredients'])):
-                writer.writerow([info['Ingredients'][i], info['Dish'], info['Meal'], info['Date'], info['Index'], info['Vegetarian'], info['Vegan'], info['Gluten Free']])
+            if info != {}:
+                for i in range(0, len(info['Ingredients'])):
+                    writer.writerow([info['Ingredients'][i], info['Dish'], info['Meal'], info['Date'], info['Index'], info['Vegetarian'], info['Vegan'], info['Gluten Free']])
 
+def export_each_recipe_once():
+    dishes = []
+    with open('FoodsUnique.csv', 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['Ingredient', 'Dish', 'Meal', 'Date', 'Index', 'Vegetarian', 'Vegan', 'Gluten-Free'])
+        for doc in docs:
+            info = doc.to_dict()
+            if info != {} and info['Dish'] not in dishes:
+                for i in range(0, len(info['Ingredients'])):
+                    writer.writerow([info['Ingredients'][i], info['Dish'], info['Meal'], info['Date'], info['Index'], info['Vegetarian'], info['Vegan'], info['Gluten Free']])
+                dishes.append(info['Dish'])
+
+if __name__ == "__main__":
+    export_each_recipe_once()
