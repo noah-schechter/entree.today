@@ -1,4 +1,4 @@
-name: Dinner
+name: Dinner Update
 
 on:
   schedule:
