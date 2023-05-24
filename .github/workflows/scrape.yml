@@ -36,6 +36,6 @@ jobs:
           client_id: '${{ secrets.CLIENT_ID }}'
           client_email: '${{ secrets.CLIENT_EMAIL }}'
           client_x509_cert_url: '${{ secrets.CLIENT_X509_CERT_URL }}' 
-          projectId: bettermenu-75f1f
+          project_id: '${{ secrets.PROJECT_ID }}'
         run: |
           python ./scripts/scrapeYourPlate.py
