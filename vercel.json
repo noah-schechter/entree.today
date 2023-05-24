@@ -1,8 +1,0 @@
-{
-  "crons": [
-    {
-      "path": "/scripts/scrapeYourPlate",
-      "schedule": "02 7 * * *"
-    }
-  ]
-}
