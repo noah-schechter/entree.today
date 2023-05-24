@@ -1,5 +1,0 @@
-selenium
-firebase-admin
-selenium.webdriver.chrome.service
-os
-datetime
