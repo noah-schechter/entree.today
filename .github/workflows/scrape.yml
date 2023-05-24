@@ -1,4 +1,4 @@
-name: Scrape/Lunch 
+name: Scrape and Lunch Update
 
 on:
   schedule:
