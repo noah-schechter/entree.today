@@ -94,7 +94,7 @@ def writeSides(dishes):
 Creates new index.html file comprised of the proper meal and dishes.
 """
 def writeFile(dishes, meal):
-    f = open('dist/index.html','w')
+    f = open('./dist/index.html','w')
     message = """
     <!DOCTYPE html>
     <html>
@@ -149,7 +149,7 @@ def writeFile(dishes, meal):
 
 
 def writeAPI(date, meal, dishes):
-    f = open('public/api.json','w')
+    f = open('./dist/api.json','w')
     message = """{"date": %s, "meal": %s, "entrees": %s, "sides": %s}"""
     full = message % (date, meal, dishes[0:2], dishes[2:])
     f.write(full)
