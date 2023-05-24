@@ -38,13 +38,15 @@ jobs:
       - name: Upate index.html with lunch info
         env:
           key: '${{ secrets.KEY }}'
+          workspace: ''
         run:
            python ./scripts/updateIndex.py
+
       - name: check for changes
         run: git status
       
       - name: stage changed files
-        run: git add index.html
+        run: git add ./website/dist/index.html
 
       - name: commit changed files
         run: git commit -m "Lunch update"
