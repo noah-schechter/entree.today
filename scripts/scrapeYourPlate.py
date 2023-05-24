@@ -2,6 +2,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+import os
 
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
@@ -21,7 +22,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
-cred = credentials.Certificate('serviceAccountKey.json') #Change filepath as necessary
+cred = credentials.Certificate(os.environ.get('firebaseServiceAccount')) 
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
