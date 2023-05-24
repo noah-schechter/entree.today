@@ -26,7 +26,7 @@ from firebase_admin import firestore
 import json
 
 
-cred = credentials.Certificate(json.loads(os.environ.get(key)))
+cred = credentials.Certificate(json.loads(os.environ.get('key')))
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
