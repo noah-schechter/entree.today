@@ -6,8 +6,9 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 from dotenv import load_dotenv
 load_dotenv() 
+import json
 
-cred = credentials.Certificate(os.environ.get('key'))
+cred = credentials.Certificate(json.loads(os.environ.get('key')))
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
