@@ -37,5 +37,6 @@ jobs:
           client_email: '${{ secrets.CLIENT_EMAIL }}'
           client_x509_cert_url: '${{ secrets.CLIENT_X509_CERT_URL }}' 
           project_id: '${{ secrets.PROJECT_ID }}'
+          private_key_id: '${{ secrets.PRIVATE_KEY_ID}}'
         run: |
           python ./scripts/scrapeYourPlate.py
