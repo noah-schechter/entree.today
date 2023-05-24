@@ -41,7 +41,7 @@ jobs:
         run: git status
       
       - name: stage changed files
-        run: 
+        run: |
           git add ./website/dist/index.html
           git add ./website/dist/api.json
 
