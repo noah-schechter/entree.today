@@ -41,15 +41,15 @@ jobs:
       - name: check for changes
         run: git status
       
-     - name: stage changed files
+      - name: stage changed files
         run: git add index.html
 
-    - name: commit changed files
+      - name: commit changed files
         run: git commit -m "Lunch update"
     
-    - name: fetch from main
+      - name: fetch from main
         run: git fetch origin main
 
-    - name: push code to main
+      - name: push code to main
         run: git push origin HEAD:main
       
