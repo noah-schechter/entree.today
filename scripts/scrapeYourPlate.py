@@ -26,7 +26,7 @@ from firebase_admin import firestore
 import json
 
 
-cred = credentials.Certificate(json.loads(str({
+cred = credentials.Certificate(json.loads({
     "type": "service_account",
     "project_id": os.environ.get('project_id'),
     "private_key_id": os.environ.get('private_key_id'),
