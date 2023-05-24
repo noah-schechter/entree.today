@@ -1,4 +1,4 @@
 selenium
 firebase-admin
-dotenv
+python-dotenv
 datetime
