@@ -26,4 +26,4 @@ jobs:
         env:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BETTERMENU_75F1F }}'
         run: |
-          python3 scrapeYourPlate.py
+          python ./scripts/scrapeYourPlate.py
