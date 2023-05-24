@@ -1,8 +1,8 @@
 name: Scrape 
 
 on:
-  schedule"
-  - cron: "ADD CORN STUFF? HERE"
+  schedule:
+  - cron: "02 7 * * *"
 
 jobs:
   build:
