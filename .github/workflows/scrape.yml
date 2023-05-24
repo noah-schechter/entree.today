@@ -1,8 +1,9 @@
 name: Scrape and Lunch Update
 
 on:
+  workflow_dispatch:
   schedule:
-  - cron: "02 7 * * *" 
+  - cron: '08 7 * * *'
 
 jobs:
   build:
