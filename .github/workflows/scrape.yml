@@ -35,3 +35,21 @@ jobs:
           key: '${{ secrets.KEY }}'
         run: |
           python ./scripts/scrapeYourPlate.py
+      - name: Upate index.html with lunch info
+        run:
+           python ./scripts/updateIndex.py
+      - name: check for changes
+        run: git status
+      
+     - name: stage changed files
+        run: git add index.html
+
+    - name: commit changed files
+        run: git commit -m "Lunch update"
+    
+    - name: fetch from main
+        run: git fetch origin main
+
+    - name: push code to main
+        run: git push origin HEAD:main
+      

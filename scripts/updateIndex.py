@@ -4,9 +4,10 @@ from datetime import timedelta
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+from dotenv import load_dotenv
+load_dotenv() 
 
-
-cred = credentials.Certificate("serviceAccountKey.json")
+cred = credentials.Certificate(os.environ.get('key'))
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -92,7 +93,7 @@ def writeSides(dishes):
 Creates new index.html file comprised of the proper meal and dishes.
 """
 def writeFile(dishes, meal):
-    f = open('public/index.html','w')
+    f = open('dist/index.html','w')
     message = """
     <!DOCTYPE html>
     <html>
@@ -153,10 +154,6 @@ def writeAPI(date, meal, dishes):
     f.write(full)
     f.close()
 
-def deployFile():
-    os.system("npm install -g firebase-tools")
-    key = os.environ.get('FIREBASE_TOKEN')
-    os.system(f'firebase deploy --token {key}')
     
 if __name__ == "__main__":
     dateTime = str(datetime.datetime.utcnow())
@@ -166,4 +163,3 @@ if __name__ == "__main__":
     dishes = getDishes(date, meal)
     writeFile(dishes, meal)
     writeAPI(date, meal, dishes)
-    deployFile() 
