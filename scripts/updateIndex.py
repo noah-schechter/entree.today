@@ -94,7 +94,8 @@ def writeSides(dishes):
 Creates new index.html file comprised of the proper meal and dishes.
 """
 def writeFile(dishes, meal):
-    f = open('./dist/index.html','w')
+    path = os.environ.get('GITHUB_WORKSPACE') + '/dist/index.html'
+    f = open(path,'w')
     message = """
     <!DOCTYPE html>
     <html>
@@ -149,7 +150,8 @@ def writeFile(dishes, meal):
 
 
 def writeAPI(date, meal, dishes):
-    f = open('./dist/api.json','w')
+    path = os.environ.get('GITHUB_WORKSPACE') + '/dist/api.json'
+    f = open(path,'w')
     message = """{"date": %s, "meal": %s, "entrees": %s, "sides": %s}"""
     full = message % (date, meal, dishes[0:2], dishes[2:])
     f.write(full)
