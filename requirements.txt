@@ -2,4 +2,3 @@ selenium
 firebase-admin
 python-dotenv
 datetime
-json
