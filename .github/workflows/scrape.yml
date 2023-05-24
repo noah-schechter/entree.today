@@ -36,14 +36,14 @@ jobs:
         run: |
           python ./scripts/scrapeYourPlate.py
       - name: Upate index.html with lunch info
+        env:
+          key: '${{ secrets.KEY }}'
         run:
            python ./scripts/updateIndex.py
       - name: check for changes
         run: git status
       
       - name: stage changed files
-        env:
-          key: '${{ secrets.KEY }}'
         run: git add index.html
 
       - name: commit changed files
