@@ -3,6 +3,14 @@ name: Scrape
 on:
   schedule:
   - cron: "02 7 * * *"
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'  
 
 jobs:
   build:
