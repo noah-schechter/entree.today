@@ -31,7 +31,7 @@ cred = credentials.Certificate({
     'project_id': os.environ.get('project_id'),
     'private_key': os.environ.get('serviceAccount'),
     'client_email': os.environ.get('client_email'),
-    'client_id': os.environ.get('client_id')
+    'client_id': os.environ.get('client_id'),
     'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
     'token_uri': 'https://accounts.google.com/o/oauth2/token',
     'auth_provider_x509_cert_url': 'https://www.googleapis.com/oauth2/v1/certs',
