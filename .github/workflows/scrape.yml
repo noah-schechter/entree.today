@@ -2,15 +2,7 @@ name: Scrape and Lunch Update
 
 on:
   schedule:
-  - cron: "02 7 * * *"
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'     
-        required: true
-        default: 'warning'
-      tags:
-        description: 'Test scenario tags'  
+  - cron: "02 7 * * *" 
 
 jobs:
   build:
