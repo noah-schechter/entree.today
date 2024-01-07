@@ -108,7 +108,7 @@ def writeFile(dishes, meal):
         <script defer src="/_vercel/insights/script.js"></script>
     </head>
     <body>
-       <div class="bg-no-repeat bg-cover bg-opacity-20 sm:bg-right-bottom"
+       <div class="bg-no-repeat bg-cover bg-opacity-20 sm:bg-right-bottom min-h-screen"
         style="background-image: url(FinalFinalFinal50.png)">
         <div class="p-4 md:grid md:grid-cols-5">
             <div class="md:col-start-2 md:col-end-5"> 
