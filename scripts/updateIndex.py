@@ -65,12 +65,8 @@ def writeEntrees(dishes):
             %s
         </p>
         """ 
-    count = 0
-    for dish in dishes:
-        count += 1
-    if count < 2:
-        dishes.append("Sorry, we weren't able to determine today's meals.")
-        dishes.append("Be sure to check back tomorrow for an updated menu.")
+    if len(dishes):
+        return "error"
     return(entrees % (dishes[0], dishes[1]))
 
 """
@@ -96,51 +92,94 @@ Creates new index.html file comprised of the proper meal and dishes.
 def writeFile(dishes, meal):
     path = os.environ.get('GITHUB_WORKSPACE') + '/website/dist/index.html'
     f = open(path,'w')
-    message = """
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>entree.today</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="output.css" rel="stylesheet"> 
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-        <script defer src="/_vercel/insights/script.js"></script>
-    </head>
-    <body>
-       <div class="bg-no-repeat bg-cover bg-opacity-20 sm:bg-right-bottom min-h-screen"
-        style="background-image: url(FinalFinalFinal50.png)">
-        <div class="p-4 md:grid md:grid-cols-5">
-            <div class="md:col-start-2 md:col-end-5"> 
-                <div>
-                    <h1 class="heading text-6xl font-bold md:text-center" id="top">%s</h1>
-                    <div id="info" class="md:text-center md:text-xl italic">
-                    %s
+    if len(dishes) < 2:
+        message = """ 
+        <!DOCTYPE html>
+            <html>
+            <head>
+                <title>entree.today</title>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link href="output.css" rel="stylesheet"> 
+                <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+                <script defer src="/_vercel/insights/script.js"></script>
+            </head>
+            <body>
+            <div class="bg-no-repeat bg-cover bg-opacity-20 sm:bg-right-bottom min-h-screen"
+                style="background-image: url(FinalFinalFinal50.png)">
+                <div class="p-4 md:grid md:grid-cols-5">
+                    <div class="md:col-start-2 md:col-end-5"> 
+                        <div>
+                            <h1 class="heading text-6xl font-bold md:text-center" id="top">%s</h1>
+                            <div id="info" class="md:text-center md:text-xl italic">
+                            %s
+                            </div>
+                        </div>
+                        <div class="py-6" >
+                            <h1 class="heading py-2 font-bold md:text-center" id="entree_header" align="center">SORRY</h1>
+                            <div id="entrees" class="md:text-center md:text-xl">
+                                Either our systems experienced an error, or Stanford's dining hall menu site isn't displaying info today.
+                                This may be because Stanford's dining halls aren't open today. 
+                            </div>
+                        </div>
+                        <div class="footer pt-8 text-xs" align="center">
+                            <p class="text-xs"><i>Background image recolored from original by Ward & Blohme, Architects. Memorial Church. August 1, 1911. Sourced from <u><a href="https://searchworks.stanford.edu/view/zy932bd0293">Stanford Library</a></u>. <a target="_blank" href="https://icons8.com/icon/59873/restaurant">Restaurant</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>.</i></p>
+                            <p align="center" class="pt-4 text-xs"><u><a href="about.html">About</a></U></p>
+                            <p align="center" class="pt-4 text-xs">entree.today is <a href="https://github.com/noah-schechter/entree.today">open source</a>.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="py-6" >
-                    <h1 class="heading py-2 font-bold md:text-center" id="entree_header" align="center">ENTREES</h1>
-                    <div id="entrees" class="md:text-center md:text-xl">
-                        %s
+            </div> 
+            </body>
+        </html>
+        """
+
+    else: 
+            message = """
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>entree.today</title>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link href="output.css" rel="stylesheet"> 
+                <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+                <script defer src="/_vercel/insights/script.js"></script>
+            </head>
+            <body>
+            <div class="bg-no-repeat bg-cover bg-opacity-20 sm:bg-right-bottom min-h-screen"
+                style="background-image: url(FinalFinalFinal50.png)">
+                <div class="p-4 md:grid md:grid-cols-5">
+                    <div class="md:col-start-2 md:col-end-5"> 
+                        <div>
+                            <h1 class="heading text-6xl font-bold md:text-center" id="top">%s</h1>
+                            <div id="info" class="md:text-center md:text-xl italic">
+                            %s
+                            </div>
+                        </div>
+                        <div class="py-6" >
+                            <h1 class="heading py-2 font-bold md:text-center" id="entree_header" align="center">ENTREES</h1>
+                            <div id="entrees" class="md:text-center md:text-xl">
+                                %s
+                            </div>
+                        </div>
+                        <div  class="py-6" >
+                            <h1 class="heading font-bold py-2 md:text-center" id="sides_header" align="center">SIDES</h1>
+                            <div  id="sides" class="md:text-center md:text-xl">
+                                %s
+                            </div>
+                        </div>
+                        <div class="footer pt-8 text-xs" align="center">
+                            <p class="text-xs"><i>Background image recolored from original by Ward & Blohme, Architects. Memorial Church. August 1, 1911. Sourced from <u><a href="https://searchworks.stanford.edu/view/zy932bd0293">Stanford Library</a></u>. <a target="_blank" href="https://icons8.com/icon/59873/restaurant">Restaurant</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>.</i></p>
+                            <p align="center" class="pt-4 text-xs"><u><a href="about.html">About</a></U></p>
+                            <p align="center" class="pt-4 text-xs">entree.today is <a href="https://github.com/noah-schechter/entree.today">open source</a>.</p>
+                        </div>
                     </div>
                 </div>
-                <div  class="py-6" >
-                    <h1 class="heading font-bold py-2 md:text-center" id="sides_header" align="center">SIDES</h1>
-                    <div  id="sides" class="md:text-center md:text-xl">
-                        %s
-                    </div>
-                </div>
-                <div class="footer pt-8 text-xs" align="center">
-                    <p class="text-xs"><i>Background image recolored from original by Ward & Blohme, Architects. Memorial Church. August 1, 1911. Sourced from <u><a href="https://searchworks.stanford.edu/view/zy932bd0293">Stanford Library</a></u>. <a target="_blank" href="https://icons8.com/icon/59873/restaurant">Restaurant</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>.</i></p>
-                    <p align="center" class="pt-4 text-xs"><u><a href="about.html">About</a></U></p>
-                    <p align="center" class="pt-4 text-xs">entree.today is <a href="https://github.com/noah-schechter/entree.today">open source</a>.</p>
-                </div>
-            </div>
-        </div>
-    </div> 
-    </body>
-</html>
-"""
+            </div> 
+            </body>
+        </html>
+        """
     info = ""
     if meal == 'brunch':
         info = 'This is supposed to be the lunch part of brunch. Expect breakfast food too.'
