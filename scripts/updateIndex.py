@@ -65,7 +65,7 @@ def writeEntrees(dishes):
             %s
         </p>
         """ 
-    if len(dishes):
+    if len(dishes) < 2:
         return "error"
     return(entrees % (dishes[0], dishes[1]))
 
