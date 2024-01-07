@@ -106,7 +106,7 @@ def writeFile(dishes, meal):
             </head>
             <body>
             <div class="bg-no-repeat bg-cover bg-opacity-20 sm:bg-right-bottom min-h-screen"
-                style="background-image: url(FinalFinalFinal50.png)">
+                style="background-image: url(FinalFinal50.png)">
                 <div class="p-4 md:grid md:grid-cols-5">
                     <div class="md:col-start-2 md:col-end-5"> 
                         <div>
@@ -148,7 +148,7 @@ def writeFile(dishes, meal):
             </head>
             <body>
             <div class="bg-no-repeat bg-cover bg-opacity-20 sm:bg-right-bottom min-h-screen"
-                style="background-image: url(FinalFinalFinal50.png)">
+                style="background-image: url(FinalFinal50.png)">
                 <div class="p-4 md:grid md:grid-cols-5">
                     <div class="md:col-start-2 md:col-end-5"> 
                         <div>
