@@ -123,9 +123,7 @@ def writeFile(dishes, meal):
                             </div>
                         </div>
                         <div class="footer pt-8 text-xs" align="center">
-                            <p class="text-xs"><i>Background image recolored from original by Ward & Blohme, Architects. Memorial Church. August 1, 1911. Sourced from <u><a href="https://searchworks.stanford.edu/view/zy932bd0293">Stanford Library</a></u>. <a target="_blank" href="https://icons8.com/icon/59873/restaurant">Restaurant</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>.</i></p>
-                            <p align="center" class="pt-4 text-xs"><u><a href="about.html">About</a></U></p>
-                            <p align="center" class="pt-4 text-xs">entree.today is <a href="https://github.com/noah-schechter/entree.today">open source</a>.</p>
+                            <p class="text-[6px] w-96 text-zinc-400"><i>Background image recolored from original by Ward & Blohme, Architects. Memorial Church. August 1, 1911. Sourced from <u><a href="https://searchworks.stanford.edu/view/zy932bd0293">Stanford Library</a></u>. <a target="_blank" href="https://icons8.com/icon/59873/restaurant">Restaurant</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>.</i></p>
                         </div>
                     </div>
                 </div>
@@ -170,9 +168,7 @@ def writeFile(dishes, meal):
                             </div>
                         </div>
                         <div class="footer pt-8 text-xs" align="center">
-                            <p class="text-xs"><i>Background image recolored from original by Ward & Blohme, Architects. Memorial Church. August 1, 1911. Sourced from <u><a href="https://searchworks.stanford.edu/view/zy932bd0293">Stanford Library</a></u>. <a target="_blank" href="https://icons8.com/icon/59873/restaurant">Restaurant</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>.</i></p>
-                            <p align="center" class="pt-4 text-xs"><u><a href="about.html">About</a></U></p>
-                            <p align="center" class="pt-4 text-xs">entree.today is <a href="https://github.com/noah-schechter/entree.today">open source</a>.</p>
+                            <p class="text-[6px] w-96 text-zinc-400"><i>Background image recolored from original by Ward & Blohme, Architects. Memorial Church. August 1, 1911. Sourced from <u><a href="https://searchworks.stanford.edu/view/zy932bd0293">Stanford Library</a></u>. <a target="_blank" href="https://icons8.com/icon/59873/restaurant">Restaurant</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>.</i></p>
                         </div>
                     </div>
                 </div>
