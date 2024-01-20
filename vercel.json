@@ -1,7 +1,5 @@
 {
-    "rewrites": [
-      { "source": "/hamm", "destination": "/hamm.html" },
-      { "source": "/:path*", "destination": "/:path*", "has": ["pathname"] }
-    ]
-  }
-  
+  "rewrites": [
+    { "source": "/hamm", "destination": "/hamm.html" },
+  ]
+}
