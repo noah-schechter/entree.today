@@ -18,7 +18,7 @@ Returns meal (lunch or dinner) based on time of day. If its before 4 pm, returns
 """
 def getMeal(dateTime):
     hour = int(dateTime[11:13])
-    if hour == 23 or (hour >= 0 and hour < 7):
+    if hour == 22 or hour == 23 or (hour >= 0 and hour < 7):
         return 'dinner'
     elif datetime.datetime.today().weekday() > 4:
             return 'brunch'
